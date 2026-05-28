@@ -17,7 +17,9 @@ async function fetchCSV(): Promise<Record<string, string[]>> {
     }
 
     const blocks = row[1]?.trim() ?? '';
-    const periods = blocks ? blocks.split(';') : [];
+    const periods = blocks
+      ? blocks.split(';').map(period => period.trim()).filter(Boolean)
+      : [];
     classData[classCode] = periods;
   });
 

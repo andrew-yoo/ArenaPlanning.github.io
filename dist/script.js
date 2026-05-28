@@ -15,7 +15,9 @@ async function fetchCSV() {
             return;
         }
         const blocks = (_c = (_b = row[1]) === null || _b === void 0 ? void 0 : _b.trim()) !== null && _c !== void 0 ? _c : '';
-        const periods = blocks ? blocks.split(';') : [];
+        const periods = blocks
+            ? blocks.split(';').map(period => period.trim()).filter(Boolean)
+            : [];
         classData[classCode] = periods;
     });
     return classData;
